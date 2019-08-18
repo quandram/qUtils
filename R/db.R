@@ -6,11 +6,11 @@
 #' @export
 #' @examples
 db.load.table <- function(dbConnection, tableToLoad) {
-    data <- dbReadTable(dbConnection, tableToLoad)
+    data <- DBI::dbReadTable(dbConnection, tableToLoad)
 
     names(data) <- gsub("_", "\\.", names(data))
 
-    dbDisconnect(dbConnection)
+    DBI::dbDisconnect(dbConnection)
     rm(dbConnection)
     data
 }
@@ -33,7 +33,7 @@ db.save.table <- function(dbConnection, dataToSave, tableToSaveTo, overwrite = T
         append = append,
         ...
     )
-    dbDisconnect(dbConnection)
+    DBI::dbDisconnect(dbConnection)
     rm(dbConnection)
     return(TRUE)
 }
@@ -69,11 +69,11 @@ db.update.table <- function(dbConnection, dataToUpdate, tableToUpdate) {
 #' @export
 #' @examples
 db.query <- function(dbConnection, sqlQuery) {
-    res <- dbSendQuery(dbConnection, sqlQuery)
-    data <- dbFetch(res)
+    res <- DBI::dbSendQuery(dbConnection, sqlQuery)
+    data <- DBI::dbFetch(res)
 
-    dbClearResult(res)
-    dbDisconnect(dbConnection)
+    DBI::dbClearResult(res)
+    DBI::dbDisconnect(dbConnection)
     rm(dbConnection)
 
     data
@@ -87,9 +87,9 @@ db.query <- function(dbConnection, sqlQuery) {
 #' @export
 #' @examples
 db.statement <- function(dbConnection, sqlQuery) {
-    res <- dbExecute(dbConnection, sqlQuery)
+    res <- DBI::dbExecute(dbConnection, sqlQuery)
 
-    dbDisconnect(dbConnection)
+    DBI::dbDisconnect(dbConnection)
     rm(dbConnection)
 
     data
