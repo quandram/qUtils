@@ -8,7 +8,8 @@ Authors@R:
            email = "quandram@users.noreply.github.com")
 Description: This is a helper package for collating utils that I use when tinkering around with R.
 Imports:
-    crayon
+    crayon,
+    DBI
 License: MIT License
 Encoding: UTF-8
 LazyData: true
